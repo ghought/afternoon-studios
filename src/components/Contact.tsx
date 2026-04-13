@@ -23,14 +23,13 @@ export default function Contact() {
     const data = new FormData(form);
 
     try {
-      await fetch("/", {
+      await fetch("/__forms.html", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: new URLSearchParams(data as unknown as Record<string, string>).toString(),
       });
       setSubmitted(true);
     } catch {
-      // Fallback — form will still work via Netlify's native handling
       setSubmitted(true);
     }
   };
@@ -80,7 +79,6 @@ export default function Contact() {
                 key="form"
                 name="contact"
                 method="POST"
-                data-netlify="true"
                 onSubmit={handleSubmit}
                 className="mt-12 space-y-6"
               >
